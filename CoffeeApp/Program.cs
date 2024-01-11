@@ -1,5 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Repository.Data;
+using Repository.Repositories;
+using Repository.Repositories.Interface;
+using Services.Mappings;
+using Services.Services;
+using Services.Services.Interfaces;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +20,16 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("Connections"));
 });
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ISliderRepository, SliderRepository>();
+
+
+
+builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
 

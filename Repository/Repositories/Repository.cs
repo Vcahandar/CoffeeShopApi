@@ -8,10 +8,11 @@ namespace Repository.Repositories
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly AppDbContext _context;
-        private readonly DbSet<T> _entities;
+        private readonly DbSet<T> entities;
         public Repository(AppDbContext context)
         {
-            _entities = _context.Set<T>();
+            _context = context;
+            entities = _context.Set<T>();
         }
         public async Task CreateAsync(T entity)
         { 
@@ -20,7 +21,7 @@ namespace Repository.Repositories
                 throw new ArgumentNullException(nameof(entity));
             }
              
-           await _entities.AddAsync(entity);
+           await entities.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
 
@@ -31,14 +32,14 @@ namespace Repository.Repositories
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            _entities.Remove(entity);
+            entities.Remove(entity);
             await _context.SaveChangesAsync();
 
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await _entities.ToListAsync();
+            return await entities.ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int? id)
@@ -48,7 +49,7 @@ namespace Repository.Repositories
                 throw new ArgumentNullException();    
             }
 
-            T entity= await _entities.FindAsync(id);
+            T entity= await entities.FindAsync(id);
 
             if(entity == null)
             {

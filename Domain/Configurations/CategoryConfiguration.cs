@@ -15,7 +15,6 @@ namespace Domain.Configurations
         {
             builder.Property(m => m.Name).HasMaxLength(50).IsRequired(false);
             builder.Property(m=>m.SoftDelete).IsRequired().HasDefaultValue(false);
-            builder.Property(m=>m.CreatedAt).IsRequired().HasDefaultValue(DateTime.UtcNow);
         }
     }
 

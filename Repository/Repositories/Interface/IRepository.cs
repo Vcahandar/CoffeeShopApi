@@ -1,9 +1,6 @@
 ﻿using Domain.Models.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
+
 
 namespace Repository.Repositories.Interface
 {
@@ -14,5 +11,9 @@ namespace Repository.Repositories.Interface
         Task CreateAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
+        Task SoftDelete(T entity);
+
+        Task<List<T>> FindAllAsync(Expression<Func<T, bool>> expression);
+
     }
 }

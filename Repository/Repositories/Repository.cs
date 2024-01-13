@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Repository.Data;
 using Repository.Repositories.Interface;
+using System.Linq.Expressions;
 
 namespace Repository.Repositories
 {
@@ -37,6 +38,12 @@ namespace Repository.Repositories
 
         }
 
+        public async Task<List<T>> FindAllAsync(Expression<Func<T, bool>> expression)
+        {
+            var data = await entities.Where(expression).AsNoTracking().ToListAsync();
+            return data;
+        }
+
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await entities.ToListAsync();
@@ -53,15 +60,32 @@ namespace Repository.Repositories
 
             if(entity == null)
             {
-                throw new NullReferenceException(nameof(entity));   
+                throw new NullReferenceException("Notfound Data");   
 
             }
             return entity;
         }
 
-        public Task UpdateAsync(T entity)
+        public async Task SoftDelete(T entity)
         {
-            throw new NotImplementedException();
+            T? model = await entities.FirstOrDefaultAsync(m=>m.Id==entity.Id);
+            if (model == null)
+            {
+                throw new NullReferenceException();
+            }
+            model.SoftDelete = true;
+            _context.SaveChanges();
+        }
+
+        public async Task UpdateAsync(T entity)
+        {
+            if (entity == null)
+            {
+                throw new NullReferenceException(nameof(entity));
+            }
+
+            entities.Update(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -16,7 +16,6 @@ namespace Domain.Configurations
             builder.Property(m => m.Title).HasMaxLength(255).IsRequired(false);
             builder.Property(m => m.Image).IsRequired(false);
             builder.Property(m => m.SoftDelete).IsRequired().HasDefaultValue(false);
-            builder.Property(m => m.CreatedAt).IsRequired().HasDefaultValue(DateTime.UtcNow);
         }
     }
 }

@@ -38,16 +38,14 @@ namespace Repository.Repositories
 
         }
 
-        public async Task<List<T>> FindAllAsync(Expression<Func<T, bool>> expression)
+        public async Task<IEnumerable<T>> FindAllAsycn(Expression<Func<T, bool>> expression = null)
         {
-            var data = await entities.Where(expression).AsNoTracking().ToListAsync();
-            return data;
+            return expression != null ? await entities.Where(expression).ToListAsync() : await entities.ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
-        {
-            return await entities.ToListAsync();
-        }
+  
+
+
 
         public async Task<T> GetByIdAsync(int? id)
         {

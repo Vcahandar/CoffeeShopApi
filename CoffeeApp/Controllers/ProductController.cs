@@ -27,6 +27,8 @@ namespace CoffeeApp.Controllers
 
 
 
+
+
         [HttpGet]
         [Route("{id}")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(ProductDto))]
@@ -52,6 +54,9 @@ namespace CoffeeApp.Controllers
         }
 
 
+
+
+
         [HttpPost]
         [ProducesResponseType(statusCode: StatusCodes.Status201Created)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -70,6 +75,7 @@ namespace CoffeeApp.Controllers
         }
 
 
+
         [HttpDelete]
         [Route("{id}")]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
@@ -86,6 +92,7 @@ namespace CoffeeApp.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
 
 
         [HttpPut]
@@ -109,6 +116,26 @@ namespace CoffeeApp.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        [HttpGet]
+        [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(IEnumerable<ProductDto>))]
+        public async Task<IActionResult> Search(string? searchText)
+        {
+            try
+            {
+                return Ok(await _productService.SearchAsync(searchText));
+            }
+            catch (ArgumentNullException ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
+
 
         [HttpPost]
         [Route("{id}")]

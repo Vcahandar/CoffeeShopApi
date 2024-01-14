@@ -7,6 +7,7 @@ using Services.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,7 +27,7 @@ namespace Services.Services
 
         public async Task CreateAsync(ProductCreateAndUpdateDto data)
         {
-            var category = await _categoryRepo.FindAllAsync(a=>a.Id==data.CategoryId);
+            var category = await _categoryRepo.FindAllAsycn(a=>a.Id==data.CategoryId);
 
             var mapProduct = _mapper.Map<Product>(data);
 
@@ -45,7 +46,7 @@ namespace Services.Services
             //var mappedData = _mapper.Map<IEnumerable<ProductDto>>(data);
 
             // advance
-            return _mapper.Map<IEnumerable<ProductDto>>(await _productRepo.GetAllAsync()); 
+            return _mapper.Map<IEnumerable<ProductDto>>(await _productRepo.FindAllAsycn()); 
         }
 
         public async Task<ProductDto> GetByIdAsync(int? id) => _mapper.Map<ProductDto>(await _productRepo.GetByIdAsync(id));
@@ -72,6 +73,18 @@ namespace Services.Services
         public async Task SoftDeleteAsync(int id)
         {
             await _productRepo.SoftDelete(await _productRepo.GetByIdAsync(id));
+        }
+
+        public async Task<IEnumerable<ProductDto>> SearchAsync(string? searchText)
+        {
+            //if (string.IsNullOrEmpty(searchText))
+            //    return _mapper.Map<IEnumerable<ProductDto>>(await _productRepo.FindAllAsycn());
+
+            if(string.IsNullOrEmpty(searchText))
+              return  _mapper.Map<IEnumerable<ProductDto>>(await _productRepo.FindAllAsycn());
+
+            return _mapper.Map<IEnumerable<ProductDto>>(await _productRepo.FindAllAsycn(m=>m.Name.Contains(searchText)));    
+
         }
     }
 }

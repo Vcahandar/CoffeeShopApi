@@ -10,6 +10,8 @@ namespace Services.Services.Interfaces
         Task UpdateAsync(int? id, ProductCreateAndUpdateDto data);
         Task DeleteAsync(int? id);
         Task SoftDeleteAsync(int id);
+        Task<IEnumerable<ProductDto>> SearchAsync(string? searchText);
+
 
     }
 }

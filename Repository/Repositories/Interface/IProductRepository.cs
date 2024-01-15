@@ -9,6 +9,7 @@ namespace Repository.Repositories.Interface
 {
     public interface IProductRepository:IRepository<Product>
     {
+        Task<List<Product>> GetAllAsync();
 
     }
 }

@@ -46,7 +46,7 @@ namespace Services.Services
             //var mappedData = _mapper.Map<IEnumerable<ProductDto>>(data);
 
             // advance
-            return _mapper.Map<IEnumerable<ProductDto>>(await _productRepo.FindAllAsycn()); 
+            return _mapper.Map<IEnumerable<ProductDto>>(await _productRepo.GetAllAsync()); 
         }
 
         public async Task<ProductDto> GetByIdAsync(int? id) => _mapper.Map<ProductDto>(await _productRepo.GetByIdAsync(id));
@@ -72,7 +72,7 @@ namespace Services.Services
 
         public async Task SoftDeleteAsync(int id)
         {
-            await _productRepo.SoftDelete(await _productRepo.GetByIdAsync(id));
+            await _productRepo.SoftDeleteAsync(await _productRepo.GetByIdAsync(id));
         }
 
         public async Task<IEnumerable<ProductDto>> SearchAsync(string? searchText)

@@ -19,6 +19,8 @@ namespace Repository.Data
             //modelBuilder.ApplyConfiguration(new SliderConfiguration());
             //modelBuilder.ApplyConfiguration(new ProductConfiguration());
 
+            modelBuilder.Entity<Product>().HasQueryFilter(m => !m.SoftDelete);
+
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());  
         }
 

@@ -64,7 +64,7 @@ namespace Repository.Repositories
             return entity;
         }
 
-        public async Task SoftDelete(T entity)
+        public async Task SoftDeleteAsync(T entity)
         {
             T? model = await entities.FirstOrDefaultAsync(m=>m.Id==entity.Id);
             if (model == null)

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Domain.Models;
+using Services.DTOs.Category;
 using Services.DTOs.Product;
+using System;
 using System.Reflection.Metadata;
 
 namespace Services.Mappings
@@ -14,7 +16,9 @@ namespace Services.Mappings
                 .ForMember(dest => dest.Image, opt => opt.MapFrom(src => Convert.ToBase64String(src.Image)));
             CreateMap<ProductCreateAndUpdateDto, Product>().ReverseMap();
 
-
+            CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryCreatedDto, Category>();
+            CreateMap<CategoryUpdateDto, Category>();
 
 
 

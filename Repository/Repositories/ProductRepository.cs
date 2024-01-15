@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using Repository.Data;
 using Repository.Repositories.Interface;
 using System;
@@ -11,6 +12,22 @@ namespace Repository.Repositories
 {
     public class ProductRepository : Repository<Product>, IProductRepository
     {
-        public ProductRepository(AppDbContext context) : base(context) { }
+        private readonly AppDbContext _context;
+        private readonly DbSet<Product> _entities;
+
+        public ProductRepository(AppDbContext context):base (context)
+        {
+            _context = context;
+            _entities = _context.Set<Product>();
+        }
+
+        public async Task<List<Product>> GetAllAsync()
+        {
+            var data = await _entities
+              .Where(x => !x.SoftDelete)
+              .Include(entities => entities.Category)
+              .ToListAsync();
+            return data;
+        }
     }
 }

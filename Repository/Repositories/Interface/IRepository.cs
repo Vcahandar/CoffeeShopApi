@@ -11,7 +11,7 @@ namespace Repository.Repositories.Interface
         Task CreateAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
-        Task SoftDelete(T entity);
+        Task SoftDeleteAsync(T entity);
         Task<IEnumerable<T>> FindAllAsycn(Expression<Func<T,bool>> expression = null); 
 
         

@@ -27,8 +27,6 @@ namespace CoffeeApp.Controllers
 
 
 
-
-
         [HttpGet]
         [Route("{id}")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(ProductDto))]
@@ -137,8 +135,10 @@ namespace CoffeeApp.Controllers
 
 
 
-        [HttpPost]
+        [HttpPut]
         [Route("{id}")]
+        [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
+        [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> SoftDeleted([FromRoute][Required] int id)
         {
@@ -146,6 +146,10 @@ namespace CoffeeApp.Controllers
             {
                 await _productService.SoftDeleteAsync(id);
                 return Ok();
+            }
+            catch(NullReferenceException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (ArgumentNullException ex)
             {

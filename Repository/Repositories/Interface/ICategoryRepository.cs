@@ -9,5 +9,6 @@ namespace Repository.Repositories.Interface
 {
     public interface ICategoryRepository : IRepository<Category>
     {
+        Task<List<Category>> GetAllAsync();  
     }
 }

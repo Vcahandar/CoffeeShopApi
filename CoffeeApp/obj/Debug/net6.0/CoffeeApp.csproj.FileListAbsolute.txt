@@ -74,3 +74,4 @@ C:\Users\HP\Desktop\CoffeeApi\CoffeeApp\CoffeeApp\bin\Debug\net6.0\AutoMapper.dl
 C:\Users\HP\Desktop\CoffeeApi\CoffeeApp\CoffeeApp\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\HP\Desktop\CoffeeApi\CoffeeApp\CoffeeApp\bin\Debug\net6.0\Services.dll
 C:\Users\HP\Desktop\CoffeeApi\CoffeeApp\CoffeeApp\bin\Debug\net6.0\Services.pdb
+C:\Users\HP\Desktop\CoffeeApi\CoffeeApp\CoffeeApp\bin\Debug\net6.0\FluentValidation.dll

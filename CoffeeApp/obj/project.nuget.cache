@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "gDHrfH7hsLOVgP/Uyi3syELHM0aDDSIxHPjzkdUYaq2GAb50EWRFZNM45YvuY+TaPrBsic3hGzqgGHFyWBa0SQ==",
+  "dgSpecHash": "rZGDQO+PY1e9fOuvm+/3EuFqW47iMkxGZ5xCgCWIO6sV24DUT5Du6xVDNS51teo3A3tu/IhfpP05eKEqZX034A==",
   "success": true,
   "projectFilePath": "C:\\Users\\HP\\Desktop\\CoffeeApi\\CoffeeApp\\CoffeeApp\\CoffeeApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

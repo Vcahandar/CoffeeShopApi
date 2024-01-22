@@ -14,5 +14,7 @@ namespace Services.Services.Interfaces
         Task CreateAsync(SliderCreateDto model);
         Task UpdateAsync(int? id, SliderUpdateDto model);
         Task DeleteAsync(int? id);
+        Task SoftDeleteAsync(int? id);
+
     }
 }

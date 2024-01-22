@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.DTOs.Slider;
+using Services.Services;
 using Services.Services.Interfaces;
 using Services.Validations.Slider;
+using System.ComponentModel.DataAnnotations;
 
 namespace CoffeeApp.Controllers
 {
@@ -129,6 +131,30 @@ namespace CoffeeApp.Controllers
             }
         }
 
+
+
+
+        [HttpPut]
+        [Route("{id}")]
+        [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
+        [ProducesResponseType(statusCode: StatusCodes.Status404NotFound)]
+        [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> SoftDelete([FromRoute][Required] int? id)
+        {
+            try
+            {
+                await _service.SoftDeleteAsync(id);
+                return Ok();
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (NullReferenceException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
 
     }
 }

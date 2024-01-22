@@ -44,6 +44,10 @@ namespace Services.Services
             await _repo.DeleteAsync(existSlider);
         }
 
+        public async Task SoftDeleteAsync(int? id)
+        {
+            await _repo.SoftDeleteAsync(await _repo.GetByIdAsync(id));
+        }
         public async Task<IEnumerable<SliderListDto>> GetAllAsync()
         {
             IEnumerable<Slider> existSlider = await _repo.FindAllAsycn();

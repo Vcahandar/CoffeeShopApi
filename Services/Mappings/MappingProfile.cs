@@ -2,6 +2,7 @@
 using Domain.Models;
 using Services.DTOs.Category;
 using Services.DTOs.Product;
+using Services.DTOs.Slider;
 using System;
 using System.Reflection.Metadata;
 
@@ -19,6 +20,11 @@ namespace Services.Mappings
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryCreatedDto, Category>();
             CreateMap<CategoryUpdateDto, Category>();
+
+            CreateMap<Slider, SliderDto>();
+            CreateMap<Slider, SliderListDto>();
+            CreateMap<SliderCreateDto, Slider>();
+            CreateMap<SliderUpdateDto, Slider>();
 
 
 

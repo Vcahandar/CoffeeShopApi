@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Models;
 using Repository.Repositories.Interface;
-using Services.DTOs.Product;
+using Services.DTOs.Product; 
 using Services.Helpers;
 using Services.Services.Interfaces;
 using System.Text;

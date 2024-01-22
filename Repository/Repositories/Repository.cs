@@ -42,10 +42,7 @@ namespace Repository.Repositories
         {
             return expression != null ? await entities.Where(expression).ToListAsync() : await entities.ToListAsync();
         }
-
   
-
-
 
         public async Task<T> GetByIdAsync(int? id)
         {
